@@ -1,5 +1,5 @@
-Better Social Sharing Buttons
----------------
+INTRODUCTION
+------------
 Allows you to add social sharing buttons to your website.
 
 This module generates a block, a node field and a paragraph field so you can choose how and where you add the social
@@ -45,6 +45,14 @@ And there are 2 icon sets to choose from:
 I have rewritten this module so all svgs are minified, and the module now uses an svg sprite so there is only a one time
 resource load needed to further decrease the (already small) resource footprint of this module.
 
+REQUIREMENTS
+------------
+
+This module has no module requirements to work, but:
+- It shares node title and url, so use it on node entities.
+- If you want to add the buttons via a field, then your display mode needs a layout in order for the field to show
+- You can easily place the block in any node twig file using twig_tweak module. See instructions below.
+
 INSTALLATION
 -----------
 - require the repository:
@@ -55,6 +63,9 @@ composer require drupal/better_social_sharing_buttons --prefer-dist
 ```
 drush en better_social_sharing_buttons -y
 ```
+
+CONFIGURTATION
+--------------
 - modify settings at admin/config/services/better_social_sharing_buttons/config
 - place the buttons where you want using the block, node field, paragraph field or directly in a twig
   file (see description below)
