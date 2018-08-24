@@ -64,7 +64,7 @@ composer require drupal/better_social_sharing_buttons --prefer-dist
 drush en better_social_sharing_buttons -y
 ```
 
-CONFIGURTATION
+CONFIGURATION
 --------------
 - modify settings at admin/config/services/better_social_sharing_buttons/config
 - place the buttons where you want using the block, node field, paragraph field or directly in a twig
