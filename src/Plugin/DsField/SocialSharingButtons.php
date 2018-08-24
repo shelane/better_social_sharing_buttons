@@ -45,10 +45,10 @@ class SocialSharingButtons extends DsFieldBase {
     ];
     $items['base_url'] = $base_url;
 
-    return array(
+    return [
       '#theme' => 'better_social_sharing_buttons',
       '#items' => $items,
-    );
+    ];
   }
 
 }
