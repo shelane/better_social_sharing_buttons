@@ -7,29 +7,29 @@
 var copyButtonElements = document.querySelectorAll(".btnCopy");
 
 // Add click event listener to the button(s).
-copyButtonElements.forEach(function(element){
-    //adding click event on each anchor element
-    element.addEventListener('click',function(e){
-        var popupElements = document.querySelectorAll(".social-sharing-buttons__popup");
-        copyTextToClipboard(window.location.href, popupElements);
-    });
+copyButtonElements.forEach(function (element) {
+  //adding click event on each anchor element
+  element.addEventListener('click', function (e) {
+    var popupElements = document.querySelectorAll(".social-sharing-buttons__popup");
+    copyTextToClipboard(window.location.href, popupElements);
+  });
 });
 
 /*
  * Function to copy current url to clipboard. Shows a popupmessage on screen if url was copied successful.
  */
 function copyTextToClipboard(text, popupElements) {
-    if (!navigator.clipboard) {
-        fallbackCopyTextToClipboard(text, popupElements);
-        return;
-    }
+  if (!navigator.clipboard) {
+    fallbackCopyTextToClipboard(text, popupElements);
+    return;
+  }
 
-    navigator.clipboard.writeText(text, popupElements).then(function() {
-        console.log('Copied current url to clipboard!');
-        showCopiedMessage(popupElements);
-    }, function(err) {
-        console.error('Error copying current url to clipboard: ', err);
-    });
+  navigator.clipboard.writeText(text, popupElements).then(function () {
+    console.log('Copied current url to clipboard!');
+    showCopiedMessage(popupElements);
+  }, function (err) {
+    console.error('Error copying current url to clipboard: ', err);
+  });
 }
 
 /*
@@ -38,37 +38,37 @@ function copyTextToClipboard(text, popupElements) {
  * content using the document.execCommand('copy') command.
  */
 function fallbackCopyTextToClipboard(text, popupElements) {
-    var textArea = document.createElement("textarea");
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
 
-    try {
-        var successful = document.execCommand('copy');
-        var msg = successful ? 'successful' : 'unsuccessful';
-        console.log('Copy current url to clipboard: ' + msg);
-        showCopiedMessage(popupElements);
-    } catch (err) {
-        console.error('Error copying current url to clipboard', err);
-    }
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copy current url to clipboard: ' + msg);
+    showCopiedMessage(popupElements);
+  } catch (err) {
+    console.error('Error copying current url to clipboard', err);
+  }
 
-    document.body.removeChild(textArea);
+  document.body.removeChild(textArea);
 }
 
 /*
  * Show a popup if the current url was successfully copied.
  */
 function showCopiedMessage(popupElements) {
-    var visibleClass = "visible";
+  var visibleClass = "visible";
 
-    popupElements.forEach(function(element){
-        element.classList.add(visibleClass);
+  popupElements.forEach(function (element) {
+    element.classList.add(visibleClass);
+  });
+
+  setTimeout(function () {
+    popupElements.forEach(function (element) {
+      element.classList.remove(visibleClass);
     });
-
-    setTimeout(function(){
-        popupElements.forEach(function(element){
-            element.classList.remove(visibleClass);
-        });
-    }, 4000);
+  }, 4000);
 }
