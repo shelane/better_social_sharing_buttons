@@ -159,10 +159,13 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $appid = $form_state->getValue('facebook_app_id');
-    if (!is_numeric($appid)) {
-      $form_state->setErrorByName('facebook_app_id', $this->t('Facebook App Id should be numeric'));
+    if ($form_state->getValue('services')['facebook_messenger']) {
+      $appid = $form_state->getValue('facebook_app_id');
+      if (!is_numeric($appid)) {
+        $form_state->setErrorByName('facebook_app_id', $this->t('Facebook App Id should be numeric'));
+      }
     }
+
   }
 
   /**
