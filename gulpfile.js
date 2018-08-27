@@ -3,8 +3,8 @@
 /**
  * plugins
  */
-var gulp = require('gulp'),
-  svgSprite = require('gulp-svg-sprite');
+var gulp = require('gulp');
+var svgSprite = require('gulp-svg-sprite');
 
 /**
  * configfile
@@ -22,7 +22,7 @@ var config = {
         },
         spacing: {
           padding: 0
-        },
+        }
       },
       mode: {
         symbol: {
@@ -44,7 +44,7 @@ var config = {
         },
         spacing: {
           padding: 0
-        },
+        }
       },
       mode: {
         symbol: {
@@ -53,7 +53,7 @@ var config = {
         }
       }
     }
-  },
+  }
 
 };
 
@@ -61,6 +61,7 @@ var config = {
  * Tasks
  */
 gulp.task('svg-sprite', function () {
+  'use strict';
   gulp.src(config.iconset1.src)
     .pipe(svgSprite(config.iconset1.settings))
     .pipe(gulp.dest(config.iconset1.dest));

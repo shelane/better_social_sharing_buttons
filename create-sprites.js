@@ -36,12 +36,10 @@ spriter.compile(function (error, result) {
   'use strict';
 
   /* Write `result` files to disk (or do whatever with them ...) */
-  if (result) {
-    for (var mode in result) {
-      for (var resource in result[mode]) {
-        mkdirp.sync(path.dirname(result[mode][resource].path));
-        fs.writeFileSync(result[mode][resource].path, result[mode][resource].contents);
-      }
+  for (var mode in result) {
+    for (var resource in result[mode]) {
+      mkdirp.sync(path.dirname(result[mode][resource].path));
+      fs.writeFileSync(result[mode][resource].path, result[mode][resource].contents);
     }
   }
 });
