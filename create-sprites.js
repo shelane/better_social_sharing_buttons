@@ -30,15 +30,18 @@ var spriter = new SVGSpriter(config);
 // Add SVG source files — the manual way ...
 spriter.add('assets/svg-1.svg', null, fs.readFileSync('assets/svg-1.svg', {encoding: 'utf-8'}));
 spriter.add('assets/svg-2.svg', null, fs.readFileSync('assets/svg-2.svg', {encoding: 'utf-8'}));
-/* ... */
 
 // Compile the sprite
 spriter.compile(function (error, result) {
+  'use strict';
+
   /* Write `result` files to disk (or do whatever with them ...) */
-  for (var mode in result) {
-    for (var resource in result[mode]) {
-      mkdirp.sync(path.dirname(result[mode][resource].path));
-      fs.writeFileSync(result[mode][resource].path, result[mode][resource].contents);
+  if (result) {
+    for (var mode in result) {
+      for (var resource in result[mode]) {
+        mkdirp.sync(path.dirname(result[mode][resource].path));
+        fs.writeFileSync(result[mode][resource].path, result[mode][resource].contents);
+      }
     }
   }
 });
