@@ -61,6 +61,7 @@ function fallbackCopyTextToClipboard(text, popupElements) {
  * Show a popup if the current url was successfully copied.
  */
 function showCopiedMessage(popupElements) {
+  'use strict';
   var visibleClass = 'visible';
 
   popupElements.forEach(function (element) {
