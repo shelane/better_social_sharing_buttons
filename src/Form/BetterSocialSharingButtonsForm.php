@@ -61,12 +61,12 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
     ];
     $weight++;
 
-    $form['iconset'] = array(
+    $form['iconset'] = [
       '#type' => 'radios',
       '#title' => $this->t('Which iconset do you want to use ?'),
       '#default_value' => \Drupal::state()->get('iconset') ?: 'social-icons--square',
       '#required' => TRUE,
-      '#options' => array(
+      '#options' => [
         'social-icons--square' => $this->t('Colored square icons (you can adjust the border radius)<br>
         <svg width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 455.73 455.73"><path d="M0 0v455.73h242.704V279.691h-59.33v-71.864h59.33v-60.353c0-43.893 35.582-79.475 79.475-79.475h62.025v64.622h-44.382c-13.947 0-25.254 11.307-25.254 25.254v49.953h68.521l-9.47 71.864h-59.051V455.73H455.73V0H0z" fill="#3a559f"/></svg>
         <svg width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#55ACEE" d="M0 0h128v128H0z"/><path fill="#FFF" d="M99.84 41.77a29.377 29.377 0 0 1-8.446 2.315 14.751 14.751 0 0 0 6.465-8.136 29.445 29.445 0 0 1-9.338 3.569 14.686 14.686 0 0 0-10.734-4.644c-8.122 0-14.706 6.584-14.706 14.705 0 1.153.13 2.276.38 3.352-12.222-.614-23.058-6.468-30.31-15.366a14.635 14.635 0 0 0-1.992 7.394 14.7 14.7 0 0 0 6.542 12.24 14.643 14.643 0 0 1-6.66-1.84c-.002.062-.002.123-.002.186 0 7.125 5.07 13.068 11.797 14.42a14.734 14.734 0 0 1-6.642.252c1.872 5.842 7.303 10.094 13.738 10.213a29.506 29.506 0 0 1-18.264 6.295 29.91 29.91 0 0 1-3.508-.205 41.62 41.62 0 0 0 22.543 6.606c27.05 0 41.842-22.408 41.842-41.842 0-.637-.015-1.271-.043-1.902a29.865 29.865 0 0 0 7.338-7.612z"/></svg>
@@ -83,9 +83,9 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
         <svg width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><path d="M30 32.885l17.308-15H12.692zm-4.675-1.66L30 35.06l4.602-3.837 12.706 10.891H12.692zm-13.787 9.737V19.038L24.231 30zm36.924 0V19.038L35.769 30z"/></svg>
         ...
         '),
-      ),
+      ],
       '#weight' => $weight,
-    );
+    ];
     $weight++;
 
     $form['facebook_app_id'] = [
@@ -93,14 +93,14 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
       '#title' => $this->t('Facebook App ID'),
       '#default_value' => \Drupal::state()->get('facebook_app_id') ?: '',
       '#description' => $this->t('If you want to share to FB messenger, a Facebook App Id is required'),
-      '#states'        => array(
-        'visible'      => array(
-          ':input[name="services[facebook_messenger]"]' => array('checked' => TRUE),
-        ),
-        'required' => array(
-          ':input[name="services[facebook_messenger]"]' => array('checked' => TRUE),
-        ),
-      ),
+      '#states'        => [
+        'visible'      => [
+          ':input[name="services[facebook_messenger]"]' => ['checked' => TRUE],
+        ],
+        'required' => [
+          ':input[name="services[facebook_messenger]"]' => ['checked' => TRUE],
+        ],
+      ],
       '#weight' => $weight,
     ];
 
