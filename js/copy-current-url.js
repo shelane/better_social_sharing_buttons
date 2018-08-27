@@ -47,9 +47,10 @@ function fallbackCopyTextToClipboard(text, popupElements) {
   textArea.select();
 
   try {
-    var successful = document.execCommand('copy');
+    document.execCommand('copy');
     showCopiedMessage(popupElements);
-  } catch (err) {
+  }
+  catch (err) {
     console.error('Error copying current url to clipboard', err);
   }
 
