@@ -134,12 +134,6 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
     ];
     $weight++;
 
-    $form['submit'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Save'),
-      '#weight' => $weight,
-    ];
-
     return parent::buildForm($form, $form_state);
   }
 
