@@ -147,6 +147,8 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
     \Drupal::state()->set('radius', $form_state->getValue('radius'));
     \Drupal::state()->set('facebook_app_id', $form_state->getValue('facebook_app_id'));
     \Drupal::state()->set('iconset', $form_state->getValue('iconset'));
+    $message = "Configuration saved !";
+    $this->messenger()->addMessage($message);
   }
 
   /**
