@@ -28,15 +28,17 @@ class SocialSharingButtonsBlock extends BlockBase implements BlockPluginInterfac
       $title = \Drupal::service('title_resolver')->getTitle($request, $route);
     }
 
+    $config = \Drupal::config('better_social_sharing_buttons.settings');
+
     $items['page_url'] = Url::fromRoute('<current>', [], ['absolute' => TRUE]);
     $items['description'] = '';
     $items['title'] = $title;
-    $items['width'] = \Drupal::state()->get('width') ?: '20px';
-    $items['height'] = \Drupal::state()->get('height') ?: '20px';
-    $items['radius'] = \Drupal::state()->get('radius') ?: '3px';
-    $items['facebook_app_id'] = \Drupal::state()->get('facebook_app_id') ?: '';
-    $items['iconset'] = \Drupal::state()->get('iconset') ?: 'social-icons--square';
-    $items['services'] = \Drupal::state()->get('services') ?: [
+    $items['width'] = $config->get('width') ?: '20px';
+    $items['height'] = $config->get('height') ?: '20px';
+    $items['radius'] = $config->get('radius') ?: '3px';
+    $items['facebook_app_id'] = $config->get('facebook_app_id') ?: '';
+    $items['iconset'] = $config->get('iconset') ?: 'social-icons--square';
+    $items['services'] = $config->get('services') ?: [
       'facebook' => 'facebook',
       'twitter' => 'twitter',
       'linkedin' => 'linkedin',

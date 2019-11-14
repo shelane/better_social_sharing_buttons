@@ -30,15 +30,17 @@ class SocialSharingButtonsParagraph extends DsFieldBase {
     $current_path = \Drupal::service('path.current')->getPath();
     $page_url = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 
+    $config = \Drupal::config('better_social_sharing_buttons.settings');
+
     $items['page_url'] = $base_url . $page_url;
     $items['description'] = '';
     $items['title'] = $entity->get('title')->value;
-    $items['width'] = \Drupal::state()->get('width') ?: '20px';
-    $items['height'] = \Drupal::state()->get('height') ?: '20px';
-    $items['radius'] = \Drupal::state()->get('radius') ?: '3px';
-    $items['facebook_app_id'] = \Drupal::state()->get('facebook_app_id') ?: '';
-    $items['iconset'] = \Drupal::state()->get('iconset') ?: 'social-icons--square';
-    $items['services'] = \Drupal::state()->get('services') ?: [
+    $items['width'] = $config->get('width') ?: '20px';
+    $items['height'] = $config->get('height') ?: '20px';
+    $items['radius'] = $config->get('radius') ?: '3px';
+    $items['facebook_app_id'] = $config->get('facebook_app_id') ?: '';
+    $items['iconset'] = $config->get('iconset') ?: 'social-icons--square';
+    $items['services'] = $config->get('services') ?: [
       'facebook' => 'facebook',
       'twitter' => 'twitter',
       'linkedin' => 'linkedin',

@@ -22,7 +22,18 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
+  protected function getEditableConfigNames() {
+    return [
+      'better_social_sharing_buttons.settings',
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state) {
+
+    $config = $this->config('better_social_sharing_buttons.settings');
 
     $weight = 1;
 
@@ -50,7 +61,7 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
       '#type' => 'checkboxes',
       '#description' => $this->t('Check the services for which you would want social sharing buttons to appear'),
       '#options' => $social_services,
-      '#default_value' => \Drupal::state()->get('services') ?: [
+      '#default_value' => $config->get('services') ?: [
         'facebook',
         'twitter',
         'linkedin',
@@ -64,7 +75,7 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
     $form['iconset'] = [
       '#type' => 'radios',
       '#title' => $this->t('Which iconset do you want to use ?'),
-      '#default_value' => \Drupal::state()->get('iconset') ?: 'social-icons--square',
+      '#default_value' => $config->get('iconset') ?: 'social-icons--square',
       '#required' => TRUE,
       '#options' => [
         'social-icons--square' => $this->t('Colored square icons (you can adjust the border radius)<br>
@@ -91,7 +102,7 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
     $form['facebook_app_id'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Facebook App ID'),
-      '#default_value' => \Drupal::state()->get('facebook_app_id') ?: '',
+      '#default_value' => $config->get('facebook_app_id') ?: '',
       '#description' => $this->t('If you want to share to FB messenger, a Facebook App Id is required'),
       '#states'        => [
         'visible'      => [
@@ -107,7 +118,7 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
     $form['width'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Icon width'),
-      '#default_value' => \Drupal::state()->get('width') ?: '20px',
+      '#default_value' => $config->get('width') ?: '20px',
       '#description' => $this->t('Set the width of the icons in pixels, like 32px'),
       '#required' => TRUE,
       '#weight' => $weight,
@@ -117,7 +128,7 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
     $form['height'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Icon height'),
-      '#default_value' => \Drupal::state()->get('height') ?: '20px',
+      '#default_value' => $config->get('height') ?: '20px',
       '#description' => $this->t('Set the height of the icons in pixels, like 32px'),
       '#required' => TRUE,
       '#weight' => $weight,
@@ -127,7 +138,7 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
     $form['radius'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Border radius'),
-      '#default_value' => \Drupal::state()->get('radius') ?: '3px',
+      '#default_value' => $config->get('radius') ?: '3px',
       '#description' => $this->t('Set the border radius of each icon (=rounded corners). Set to 0px to have square icons or 100% to convert the square icons into circular icons'),
       '#required' => TRUE,
       '#weight' => $weight,
@@ -141,13 +152,15 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    \Drupal::state()->set('services', $form_state->getValue('services'));
-    \Drupal::state()->set('width', $form_state->getValue('width'));
-    \Drupal::state()->set('height', $form_state->getValue('height'));
-    \Drupal::state()->set('radius', $form_state->getValue('radius'));
-    \Drupal::state()->set('facebook_app_id', $form_state->getValue('facebook_app_id'));
-    \Drupal::state()->set('iconset', $form_state->getValue('iconset'));
-    $message = "Configuration saved !";
+    $config = $this->config('better_social_sharing_buttons.settings');
+    $config->set('services', $form_state->getValue('services'));
+    $config->set('width', $form_state->getValue('width'));
+    $config->set('height', $form_state->getValue('height'));
+    $config->set('radius', $form_state->getValue('radius'));
+    $config->set('facebook_app_id', $form_state->getValue('facebook_app_id'));
+    $config->set('iconset', $form_state->getValue('iconset'));
+    $config->save();
+    $message = $this->t("Configuration saved !");
     $this->messenger()->addMessage($message);
   }
 
@@ -162,15 +175,6 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
       }
     }
 
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function getEditableConfigNames() {
-    return [
-      'better_social_sharing_buttons.settings',
-    ];
   }
 
 }
