@@ -26,7 +26,7 @@ function better_social_sharing_buttons_theme($existing, $type, $theme, $path) {
  * Implements hook_preprocess_HOOK().
  */
 function better_social_sharing_buttons_preprocess_better_social_sharing_buttons(&$variables) {
-  $variables['social_buttons_sprite'] = '/' . drupal_get_path('module', 'better_social_sharing_buttons') . '/assets/dist/sprites/' . \Drupal::state('better_social_sharing_buttons.settings')->get('iconset') . '.svg';
+  $variables['social_buttons_sprite'] = '/' . drupal_get_path('module', 'better_social_sharing_buttons') . '/assets/dist/sprites/' . \Drupal::state('better_social_sharing_buttons.settings')->get('iconset', 'social-icons--square') . '.svg';
 }
 
 /**
