@@ -5,7 +5,7 @@
   margin: 2em 0;
 }
 
-.social-sharing-buttons a {
+.social-sharing-buttons a, .social-sharing-buttons__button {
   text-decoration: none;
   margin: 0 4px;
   display: flex;
