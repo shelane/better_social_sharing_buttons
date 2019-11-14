@@ -15,7 +15,7 @@
 
     <!-- Twitter share button -->
     {% if items.services.twitter %}
-        <a href="http://twitter.com/home?status={{ items.title }}+{{ items.page_url }}" target="_blank" title="{{ 'Share to'|t }} Twitter" aria-label="{{ 'Share to'|t }} Twitter" class="social-sharing-buttons__button" rel="noopener">
+        <a href="http://twitter.com/intent/tweet?text={{ items.title }}+{{ items.page_url }}" target="_blank" title="{{ 'Share to'|t }} Twitter" aria-label="{{ 'Share to'|t }} Twitter" class="social-sharing-buttons__button" rel="noopener">
             <svg width="{{ items.width }}" height="{{ items.height }}" style="border-radius:{{ items.radius }};">
                 <use xlink:href="{{ social_buttons_sprite }}#twitter" />
             </svg>
