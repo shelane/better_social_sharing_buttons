@@ -27,7 +27,6 @@ There is a settings form where you can set which services you would like to use:
 - E-mail
 - Pinterest
 - Linkedin
-- Google+
 - Digg
 - Delicious
 - Slashdot

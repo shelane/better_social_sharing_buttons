@@ -70,15 +70,6 @@
         </a>
     {% endif %}
 
-    <!-- Google+ share button -->
-    {% if items.services.googleplus %}
-        <a href="https://plus.google.com/share?url={{ items.page_url }}" target="_blank" title="{{ 'Share to'|t }} Google+" aria-label="{{ 'Share to'|t }} Google+" class="social-sharing-buttons__button" rel="noopener">
-            <svg {{ width }} {{ height }} {{ radius }}>
-                <use xlink:href="{{ social_buttons_sprite }}#googleplus" />
-            </svg>
-        </a>
-    {% endif %}
-
     <!-- Digg share button -->
     {% if items.services.digg %}
         <a href="http://www.digg.com/submit?phase=2&url={{ items.page_url }}&title={{ items.title }}" target="_blank" title="{{ 'Share to'|t }} Digg" aria-label="{{ 'Share to'|t }} Digg" class="social-sharing-buttons__button" rel="noopener">

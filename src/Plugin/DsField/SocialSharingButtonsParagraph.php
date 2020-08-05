@@ -44,7 +44,6 @@ class SocialSharingButtonsParagraph extends DsFieldBase {
       'facebook' => 'facebook',
       'twitter' => 'twitter',
       'linkedin' => 'linkedin',
-      'googleplus' => 'googleplus',
       'email' => 'email',
     ];
     $items['base_url'] = $base_url;
