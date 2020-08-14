@@ -84,7 +84,6 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
         'copy' => $this->t('Copy current page url to clipboard'),
       ],
       '#default_value' => $this->configuration['services'] ?? $config->get('services'),
-      '#weight' => '0',
     ];
     $form['iconset'] = [
       '#type' => 'radios',
@@ -108,12 +107,11 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
         '),
       ],
       '#default_value' => $this->configuration['iconset'] ?? $config->get('iconset'),
-      '#weight' => '0',
     ];
     $form['facebook_app_id'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Facebook App ID'),
-      '#description' => $this->t('If you want to share to FB messenger, a Facebook App Id is required'),
+      '#description' => $this->t('If you want to share to FB messenger, a Facebook App ID is required'),
       '#states'        => [
         'visible'      => [
           ':input[name="settings[services][facebook_messenger]"]' => ['checked' => TRUE],
@@ -152,7 +150,6 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
       '#default_value' => $this->configuration['radius'] ?? $config->get('radius'),
       '#maxlength' => 64,
       '#size' => 64,
-      '#weight' => '0',
     ];
 
     return $form;
@@ -167,7 +164,6 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
     $this->configuration['facebook_app_id'] = $form_state->getValue('facebook_app_id');
     $this->configuration['print_css'] = $form_state->getValue('print_css');
     $this->configuration['width'] = $form_state->getValue('width');
-    $this->configuration['height'] = $form_state->getValue('height');
     $this->configuration['radius'] = $form_state->getValue('radius');
   }
 
@@ -186,7 +182,6 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
     $items['description'] = '';
     $items['title'] = $title;
     $items['width'] = $this->configuration['width'];
-    $items['height'] = $this->configuration['height'];
     $items['radius'] = $this->configuration['radius'];
     $items['facebook_app_id'] = $this->configuration['facebook_app_id'];
     $items['print_css'] = $this->configuration['print_css'];

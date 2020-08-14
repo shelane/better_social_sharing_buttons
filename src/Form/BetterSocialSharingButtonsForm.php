@@ -144,7 +144,6 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
     $config = $this->config('better_social_sharing_buttons.settings');
     $config->set('services', $form_state->getValue('services'));
     $config->set('width', $form_state->getValue('width'));
-    $config->set('height', $form_state->getValue('height'));
     $config->set('radius', $form_state->getValue('radius'));
     $config->set('facebook_app_id', $form_state->getValue('facebook_app_id'));
     $config->set('print_css', $form_state->getValue('print_css'));

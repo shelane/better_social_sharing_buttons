@@ -34,7 +34,6 @@ class SocialSharingButtons extends DsFieldBase {
     $items['description'] = '';
     $items['title'] = $entity->get('title')->value;
     $items['width'] = $config->get('width') ?: '20px';
-    $items['height'] = $config->get('height') ?: '20px';
     $items['radius'] = $config->get('radius') ?: '3px';
     $items['facebook_app_id'] = $config->get('facebook_app_id') ?: '';
     $items['print_css'] = $config->get('print_css') ?: '';
