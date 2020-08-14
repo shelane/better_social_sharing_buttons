@@ -13,8 +13,10 @@ services:
   tumblr: 0
   reddit: 0
   evernote: 0
+  print: 0
   copy: 0
 width: 20px
 height: 20px
 radius: 3px
+print_css: ''
 facebook_app_id: ''

@@ -80,6 +80,7 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
         'tumblr' => $this->t('Tumblr'),
         'reddit' => $this->t('Reddit'),
         'evernote' => $this->t('Evernote'),
+        'print' => $this->t('Print'),
         'copy' => $this->t('Copy current page url to clipboard'),
       ],
       '#default_value' => $this->configuration['services'] ?? $config->get('services'),
@@ -124,25 +125,25 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
       '#default_value' => $this->configuration['facebook_app_id'] ?? $config->get('facebook_app_id'),
       '#maxlength' => 64,
       '#size' => 64,
-      '#weight' => '0',
+    ];
+    $form['print_css'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Print css file'),
+      '#default_value' => $this->configuration['print_css'] ?? $config->get('print_css'),
+      '#description' => $this->t('Enter absolute path to your print css file. When set, the print version will display on screen.'),
+      '#states'        => [
+        'visible'      => [
+          ':input[name="settings[services][print]"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
     $form['width'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Icon width'),
-      '#description' => $this->t('Set the width of the icons in pixels, e.g., 32px'),
+      '#title' => $this->t('Icon size'),
+      '#description' => $this->t('Set the width of the icons in pixels, e.g., 32px. Height and width will be set to this size.'),
       '#default_value' => $this->configuration['width'] ?? $config->get('width'),
       '#maxlength' => 64,
       '#size' => 64,
-      '#weight' => '0',
-    ];
-    $form['height'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Icon height'),
-      '#description' => $this->t('Set the height of the icons in pixels, e.g., 32px'),
-      '#default_value' => $this->configuration['height'] ?? $config->get('height'),
-      '#maxlength' => 64,
-      '#size' => 64,
-      '#weight' => '0',
     ];
     $form['radius'] = [
       '#type' => 'textfield',
@@ -164,6 +165,7 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
     $this->configuration['services'] = $form_state->getValue('services');
     $this->configuration['iconset'] = $form_state->getValue('iconset');
     $this->configuration['facebook_app_id'] = $form_state->getValue('facebook_app_id');
+    $this->configuration['print_css'] = $form_state->getValue('print_css');
     $this->configuration['width'] = $form_state->getValue('width');
     $this->configuration['height'] = $form_state->getValue('height');
     $this->configuration['radius'] = $form_state->getValue('radius');
@@ -187,6 +189,7 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
     $items['height'] = $this->configuration['height'];
     $items['radius'] = $this->configuration['radius'];
     $items['facebook_app_id'] = $this->configuration['facebook_app_id'];
+    $items['print_css'] = $this->configuration['print_css'];
     $items['iconset'] = $this->configuration['iconset'];
     $items['services'] = $this->configuration['services'];
     $items['base_url'] = $base_url;

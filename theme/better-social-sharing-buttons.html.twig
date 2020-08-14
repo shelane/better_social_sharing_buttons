@@ -152,4 +152,20 @@
             <div class="social-sharing-buttons__popup">{{ 'Copied to clipboard'|t }}</div>
         </button>
     {% endif %}
+
+  <!-- Print share button -->
+  {% if items.services.print %}
+    {% if items.print_css %}
+      {% set href = "#" %}
+      {% set rel = items.print_css %}
+      {{ attach_library('better_social_sharing_buttons/print-css') }}
+    {% else %}
+      {% set href = "javascript:window.print()" %}
+    {% endif %}
+    <a href="{{ href }}" rel="{{ rel }}" id="printlink">
+      <svg {{ width }} {{ height }} {{ radius }}>
+        <use href="{{ social_buttons_sprite }}#print" />
+      </svg>
+    </a>
+  {% endif %}
 </div>
