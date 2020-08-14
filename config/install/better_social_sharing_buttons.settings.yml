@@ -9,7 +9,6 @@ services:
   linkedin: 'linkedin'
   digg: 0
   stumbleupon: 0
-  delicious: 0
   slashdot: 0
   tumblr: 0
   reddit: 0
