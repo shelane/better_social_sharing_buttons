@@ -58,12 +58,7 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
       '#type' => 'checkboxes',
       '#description' => $this->t('Check the services for which you would want social sharing buttons to appear'),
       '#options' => $social_services,
-      '#default_value' => $config->get('services') ?: [
-        'facebook',
-        'twitter',
-        'linkedin',
-        'email',
-      ],
+      '#default_value' => $config->get('services'),
     ];
 
     $form['iconset'] = [
