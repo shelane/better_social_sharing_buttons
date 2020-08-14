@@ -47,7 +47,6 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
       'linkedin' => $this->t('Linkedin'),
       'digg' => $this->t('Digg'),
       'stumbleupon' => $this->t('StumbleUpon'),
-      'delicious' => $this->t('Delicious'),
       'slashdot' => $this->t('Slashdot'),
       'tumblr' => $this->t('Tumblr'),
       'reddit' => $this->t('Reddit'),

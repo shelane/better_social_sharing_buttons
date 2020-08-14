@@ -76,7 +76,6 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
         'linkedin' => $this->t('LinkedIn'),
         'digg' => $this->t('Digg'),
         'stumbleupon' => $this->t('Stumbleupon'),
-        'delicious' => $this->t('Delicious'),
         'slashdot' => $this->t('Slashdot'),
         'tumblr' => $this->t('Tumblr'),
         'reddit' => $this->t('Reddit'),
