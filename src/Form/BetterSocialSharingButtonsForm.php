@@ -129,6 +129,12 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
+    $form['node_field'] = [
+      '#title' => $this->t('Enable Better Social Sharing Buttons display field for nodes'),
+      '#type' => 'checkbox',
+      '#default_value' => $config->get('node_field') ?: FALSE,
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -143,6 +149,7 @@ class BetterSocialSharingButtonsForm extends ConfigFormBase {
     $config->set('facebook_app_id', $form_state->getValue('facebook_app_id'));
     $config->set('print_css', $form_state->getValue('print_css'));
     $config->set('iconset', $form_state->getValue('iconset'));
+    $config->set('node_field', $form_state->getValue('node_field'));
     $config->save();
     $this->messenger()->addMessage($this->t("Configuration saved!"));
   }

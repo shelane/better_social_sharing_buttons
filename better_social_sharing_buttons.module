@@ -6,6 +6,10 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\Entity\NodeType;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_theme().
@@ -20,6 +24,53 @@ function better_social_sharing_buttons_theme($existing, $type, $theme, $path) {
       'path' => $path . '/theme',
     ],
   ];
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function better_social_sharing_buttons_entity_extra_field_info() {
+  if (\Drupal::config('better_social_sharing_buttons.settings')->get('node_field')) {
+    $extra = [];
+    foreach (NodeType::loadMultiple() as $bundle) {
+      $extra['node'][$bundle->Id()]['display']['sharing_buttons'] = [
+        'label' => t('Better Social Sharing Buttons'),
+        'description' => '',
+        'weight' => 100,
+        'visible' => TRUE,
+      ];
+    }
+
+    return $extra;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function better_social_sharing_buttons_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($display->getComponent('sharing_buttons')) {
+    $config = \Drupal::config('better_social_sharing_buttons.settings');
+
+    $items = [];
+    global $base_url;
+
+    $items['page_url'] = Url::fromRoute('<current>', [], ['absolute' => TRUE]);
+    $items['description'] = '';
+    $items['title'] = $entity->get('title')->value;
+    $items['width'] = $config->get('width');
+    $items['radius'] = $config->get('radius');
+    $items['facebook_app_id'] = $config->get('facebook_app_id');
+    $items['print_css'] = $config->get('print_css');
+    $items['iconset'] = $config->get('iconset');
+    $items['services'] = $config->get('services');
+    $items['base_url'] = $base_url;
+
+    $build['sharing_buttons'] = [
+      '#theme' => 'better_social_sharing_buttons',
+      '#items' => $items,
+    ];
+  }
 }
 
 /**

@@ -54,8 +54,8 @@ REQUIREMENTS
 
 This module has no module requirements to work, but:
 - It shares node title and url, so use it on node entities
-- If you want to add the buttons via a field, you must use Display Suite and
-your display mode needs a layout in order for the field to show
+- If you want to add the buttons via a field, you must enable the field in
+the configuration. The field display will use the set configuration values.
 - You can easily place the block in any node twig file using twig_tweak module
 (see instructions below)
 
@@ -77,18 +77,6 @@ CONFIGURATION
 or directly in a twig
   file (see description below)
 
-Add social sharing buttons via twig (Twig Tweak module v1.9 or lower)
----
-If you use a version of Twig Tweak below 2.0 (like 1.9) then you cannot print a
-block that is not instantiated. The block must be enabled somewhere in
-structure/block.
-
-You can for example create a region 'hidden' in your theme which you render
-nowhere and place the block in there. Once there is an instance of the block you
-can place it anywhere in any twig file using:
-
-```{{ drupal_block("bettersocialsharingbuttons") }}```
-
 Add social sharing buttons via twig (Twig Tweak module v2.0 or higher)
 ---
 
@@ -102,7 +90,7 @@ using the block id:
 it gets the title and url for sharing from the current node.*
 
 *It is possible to add sharing buttons on teasers. A separate twig file was
-created for this so you can include this and pass the necessaray parameters to
+created for this so you can include this and pass the necessary parameters to
 it (title, url, description). On your teaser twig file, you can use this as
 follows:*
 ```
@@ -119,15 +107,36 @@ follows:*
 *As you can see, this way you can set which fields of your node contain the
 necessary info and you can set the services you want displayed.*
 
-Add social sharing buttons via a field
+Add social sharing buttons via twig (Twig Tweak module v1.9 or lower)
 ---
+If you use a version of Twig Tweak below 2.0 (like 1.9) then you cannot print a
+block that is not instantiated. The block must be enabled somewhere in
+structure/block.
 
-This module also provides a field (Better Social Sharing Buttons field) through
-Display Suite for nodes and paragraphs which you can place on any node or
-paragraph type via the manage display tab. To see this field, your display mode
-must use a layout.
+You can for example create a region 'hidden' in your theme which you render
+nowhere and place the block in there. Once there is an instance of the block you
+can place it anywhere in any twig file using:
+
+```{{ drupal_block("bettersocialsharingbuttons") }}```
 
 Add social sharing buttons via a block
 --
 
 In admin/block you can add a block (Better Social Sharing Buttons block)
+
+Add social sharing buttons via a field
+---
+
+This module also provides a field (Better Social Sharing Buttons field) through
+a pseudo field. To see this field, you must enable the feature in the
+configuration and then adjust the display mode of your nodes. When the feature
+is enabled, the field is enabled for all content types. You will need to adjust
+it for each content type as desired.
+
+Upgrade from 2.x version
+--
+
+If you used the Display Suite field, you will need to enable the field feature
+and then adjust as needed. There is no direct migration of the Display Suite
+settings. The Display Suite field is no longer supported in version 3.0 and
+greater.
