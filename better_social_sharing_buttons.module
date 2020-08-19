@@ -96,9 +96,26 @@ function better_social_sharing_buttons_help($route_name, RouteMatchInterface $ro
   switch ($route_name) {
     // Main module help for the better_social_sharing_buttons module.
     case 'help.page.better_social_sharing_buttons':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Add social sharing buttons to your website.') . '</p>';
+      $output = '<h2>' . t('Add social sharing buttons via twig (Twig Tweak module v2.0 or higher)') . '</h2>';
+      $output .= '<p>' . t('Twig Tweak version 2.0 and above can print blocks that are not instantiated by using the block id:') . '</p>';
+      $output .= '<p>' . t('*NOTE: This module was initially meant to be used on node detail pages because it gets the title and url for sharing from the current node.*') . '</p>';
+      $output .= '<p>' . t('*It is possible to add sharing buttons on teasers. A separate twig file was created for this so you can include this and pass the necessary parameters to it (title, url, description). On your teaser twig file, you can use this as follows:*') . '</p>';
+      $output .= '<code>' . "{# -- Social sharing buttons -- #}<br>
+{% set services = ['facebook', 'twitter', 'email', 'linkedin'] %}<br>
+{% include '/modules/contrib/better_social_sharing_buttons/theme/better-social-sharing-buttons.html.twig' with {<br>
+  'title': item.title,<br>
+  'url': item.url,<br>
+  'description': item.description|raw,<br>
+  'services': services<br>
+} %}" . '</code>';
+      $output .= '<p>' . t('*As you can see, this way you can set which fields of your node contain the necessary info and you can set the services you want displayed.*') . '</p>';
+
+      $output .= '<h2>' . t('Add social sharing buttons via a block') . '</h2>';
+      $output .= '<p>' . t('You can add a block via block place or layout builder and set independent configuration for those blocks.') . '</p>';
+
+      $output .= '<h2>' . t('Add social sharing buttons via a field') . '</h2>';
+      $output .= '<p>' . t('This module also provides a field (Better Social Sharing Buttons field) through a pseudo field. To see this field, you must enable the feature in the configuration and then adjust the display mode of your nodes. When the feature is enabled, the field is enabled for all content types. You will need to adjust it for each content type as desired.') . '</p>';
+
       return $output;
 
     default:
