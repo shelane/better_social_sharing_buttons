@@ -173,6 +173,7 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
   public function build() {
     $items = [];
     global $base_url;
+    $config = $this->configFactory->get('better_social_sharing_buttons.settings');
     $request = $this->requestStack->getCurrentRequest();
     if ($route = $request->attributes->get(RouteObjectInterface::ROUTE_OBJECT)) {
       $title = $this->titleResolver->getTitle($request, $route);
@@ -181,12 +182,12 @@ class SocialSharingButtonsBlock extends BlockBase implements ContainerFactoryPlu
     $items['page_url'] = Url::fromRoute('<current>', [], ['absolute' => TRUE]);
     $items['description'] = '';
     $items['title'] = $title;
-    $items['width'] = $this->configuration['width'];
-    $items['radius'] = $this->configuration['radius'];
-    $items['facebook_app_id'] = $this->configuration['facebook_app_id'];
-    $items['print_css'] = $this->configuration['print_css'];
-    $items['iconset'] = $this->configuration['iconset'];
-    $items['services'] = $this->configuration['services'];
+    $items['width'] = $this->configuration['width'] ?? $config->get('width');
+    $items['radius'] = $this->configuration['radius'] ?? $config->get('radius');
+    $items['facebook_app_id'] = $this->configuration['facebook_app_id'] ?? $config->get('facebook_app_id');
+    $items['print_css'] = $this->configuration['print_css'] ?? $config->get('print_css');
+    $items['iconset'] = $this->configuration['iconset'] ?? $config->get('iconset');
+    $items['services'] = $this->configuration['services'] ?? $config->get('services');
     $items['base_url'] = $base_url;
     return [
       '#theme' => 'better_social_sharing_buttons',
