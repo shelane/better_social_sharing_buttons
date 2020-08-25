@@ -83,7 +83,7 @@ Add social sharing buttons via twig (Twig Tweak module v2.0 or higher)
 Twig Tweak version 2.0 and above can print blocks that are not instantiated by
 using the block id:
 
-```{{ drupal_block("better_social_sharing_buttons_block") }}```
+```{{ drupal_block("social_sharing_buttons_block") }}```
 
 
 *NOTE: This module was initially meant to be used on node detail pages because
