@@ -60,7 +60,7 @@
 
     <!-- Linkedin share button -->
     {% if items.services.linkedin %}
-        <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ items.page_url }}&title={{ items.title }}&source={{ items.base_url }}" target="_blank" title="{{ 'Share to'|t }} Linkedin" aria-label="{{ 'Share to'|t }} Linkedin" class="social-sharing-buttons__button" rel="noopener">
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ items.page_url }}" target="_blank" title="{{ 'Share to'|t }} Linkedin" aria-label="{{ 'Share to'|t }} Linkedin" class="social-sharing-buttons__button" rel="noopener">
             <svg {{ width }} {{ height }} {{ radius }}>
                 <use href="{{ social_buttons_sprite }}#linkedin" />
             </svg>
