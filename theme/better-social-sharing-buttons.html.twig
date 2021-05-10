@@ -133,12 +133,12 @@
     <!-- Copy link share button -->
     {% if items.services.copy %}
         {{ attach_library('better_social_sharing_buttons/copy-current-url') }}
-        <button class="btnCopy social-sharing-buttons__button">
+        <a class="btnCopy social-sharing-buttons__button">
             <svg {{ width }} {{ height }} {{ radius }}>
                 <use href="{{ social_buttons_sprite }}#copy" />
             </svg>
             <div class="social-sharing-buttons__popup">{{ 'Copied to clipboard'|t }}</div>
-        </button>
+        </a>
     {% endif %}
 
   <!-- Print share button -->
